@@ -11,7 +11,7 @@ const data = [
 
 // GET/BUSCAR
 app.get("/students", function(req, res) {
-  // endpoin sem barra no final
+  // endpoints no plural e sem barra no final
 
   res.json(data);
 });
@@ -20,7 +20,7 @@ app.get("/students", function(req, res) {
 app.post("/students", function(req, res) {
   const { nome, curso } = req.body;
 
-  data.unshift({ nome, curso });
+  data.unshift({ nome, curso }); // adiciona um elemento no topo da lista
 
   res.json({ nome, curso });
 });
@@ -43,7 +43,7 @@ app.put("/students/:id", function(req, res) {
 app.delete("/students/:id", function(req, res) {
   const { id } = req.params;
 
-  // remove um estudante, ou seja, filtra
+  // remove um estudante
   const studentsFiltered = data.filter(stu => stu.id != id);
 
   res.json(studentsFiltered);
