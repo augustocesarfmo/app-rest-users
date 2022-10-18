@@ -4,43 +4,43 @@ const app = express();
 app.use(express.json());
 
 const data = [
-  { id: 1, nome: "Augusto César", curso: "Engenharia de Software"},
-  { id: 2, nome: "Gustavo Henrique", curso: "Agropecuária"},
-  { id: 3, nome: "Marília Gabriela", curso: "Música"},
+  { id: 1, nome: "Augusto César"},
+  { id: 2, nome: "Gustavo Henrique"},
+  { id: 3, nome: "Marília Gabriela"},
 ];
 
 // GET/BUSCAR
-app.get("/students", function(req, res) {
+app.get("/users", function(req, res) {
   // endpoints no plural e sem barra no final
 
   res.json(data);
 });
 
 // POST/CRIAR
-app.post("/students", function(req, res) {
-  const { nome, curso } = req.body;
+app.post("/users", function(req, res) {
+  const { nome } = req.body;
 
-  data.unshift({ nome, curso }); // adiciona um elemento no topo da lista
+  data.unshift({ nome }); // adiciona um elemento no topo da lista
 
-  res.json({ nome, curso });
+  res.json({ nome });
 });
 
 // PUT/ATUALIZAR
-app.put("/students/:id", function(req, res) {
+app.put("/users/:id", function(req, res) {
   const { id } = req.params;
-  const student = data.find(stu => stu.id == id);
+  const user = data.find(stu => stu.id == id);
 
-  if (!student) return res.status(204).json(); // código 204, não tem conteúdo
+  if (!user) return res.status(204).json(); // código 204, não tem conteúdo
 
   const { nome } = req.body;
 
-  student.nome = nome;
+  user.nome = nome;
 
-  res.json(student);
+  res.json(user);
 });
 
 // DELETE/DELETAR
-app.delete("/students/:id", function(req, res) {
+app.delete("/users/:id", function(req, res) {
   const { id } = req.params;
 
   // remove um estudante
