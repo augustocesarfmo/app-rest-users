@@ -1,10 +1,13 @@
 const express = require("express");
+const cors = require("cors"); 
+
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
 const data = [
-  { id: 1, nome: "Augusto César"},
+  { id: 1, nome: "Augusto"},
   { id: 2, nome: "Gustavo Henrique"},
   { id: 3, nome: "Marília Gabriela"},
 ];
